@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سوق أهراس - ملابس ومستحضرات تجميل</title>
+<meta name="description" content="سوق أهراس: متجر إلكتروني للملابس والكوزمتيك والعطور مع توصيل لجميع الولايات">
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--tx:#1d2420;--mut:#6b756f;--pri:#0f7b5f;--acc:#d4a437;--bd:#e5e1d8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121715;--card:#1b2320;--tx:#eef2ef;--mut:#9aa7a0;--bd:#2a3530}}
+:root[data-theme="dark"]{--bg:#121715;--card:#1b2320;--tx:#eef2ef;--mut:#9aa7a0;--bd:#2a3530}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+body{background:var(--bg);color:var(--tx);display:flex;justify-content:center}
+#app{width:100%;max-width:440px;min-height:100vh;padding-bottom:76px;position:relative}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+.logo{font-size:22px;font-weight:800;color:var(--pri)}.logo span{color:var(--acc)}
+button{cursor:pointer;border:0;background:none;color:inherit;font-size:14px}
+.ib{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--bd);font-size:17px}
+.sec{padding:0 16px;margin:18px 0 10px;display:flex;justify-content:space-between;font-weight:700}
+.sec small{color:var(--pri);font-weight:500}
+.srch{margin:0 16px;padding:12px 14px;background:var(--card);border:1px solid var(--bd);border-radius:12px;color:var(--mut);width:calc(100% - 32px);text-align:right}
+.ban{margin:14px 16px 0;height:140px;border-radius:18px;overflow:hidden;position:relative}
+.sl{position:absolute;inset:0;padding:22px;color:#fff;display:flex;flex-direction:column;justify-content:center;opacity:0;transition:opacity .6s}
+.sl.on{opacity:1}.sl b{font-size:22px}.sl p{margin-top:6px;opacity:.9}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:0 16px}
+.chip{padding:8px 14px;border-radius:20px;background:var(--card);border:1px solid var(--bd);white-space:nowrap}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.cats{display:flex;gap:12px;overflow-x:auto;padding:0 16px}
+.cat{text-align:center;font-size:12px;min-width:64px}.cat i{display:flex;width:58px;height:58px;margin:0 auto 5px;border-radius:50%;background:var(--card);border:1px solid var(--bd);align-items:center;justify-content:center;font-size:26px;font-style:normal}
+.row{display:flex;gap:12px;overflow-x:auto;padding:0 16px}.row .pc{min-width:150px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
+.pc{background:var(--card);border:1px solid var(--bd);border-radius:14px;overflow:hidden;position:relative;text-align:right}
+.pi{height:120px;display:flex;align-items:center;justify-content:center;font-size:52px}
+.pc div.t{padding:8px 10px}.pc .n{font-size:13px;margin-bottom:3px}.pr{font-weight:700;color:var(--pri)}.st{color:var(--acc);font-size:12px}
+.hb{position:absolute;top:6px;left:6px;width:30px;height:30px;border-radius:50%;background:var(--card);font-size:15px}
+.tag{position:absolute;top:8px;right:8px;background:var(--acc);color:#000;font-size:10px;padding:2px 7px;border-radius:8px}
+nav{position:fixed;bottom:0;width:100%;max-width:440px;display:flex;background:var(--card);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;padding:10px 0;font-size:11px;color:var(--mut);position:relative}nav button.on{color:var(--pri);font-weight:700}nav b{display:block;font-size:19px;font-weight:400}
+.bd{position:absolute;top:4px;right:50%;margin-right:-18px;background:#d33;color:#fff;border-radius:9px;font-size:10px;padding:0 5px}
+.big{height:260px;display:flex;align-items:center;justify-content:center;font-size:120px;overflow:hidden;cursor:zoom-in;transition:.3s}
+.big.z{font-size:230px;cursor:zoom-out}
+.th{display:flex;gap:8px;padding:10px 16px}.th div{width:54px;height:54px;border-radius:10px;border:2px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:24px}
+.pad{padding:0 16px}.lbl{margin:14px 0 8px;font-weight:700;font-size:14px}
+.cl{display:inline-block;width:30px;height:30px;border-radius:50%;border:3px solid var(--bd);margin-left:8px}.cl.on{border-color:var(--pri)}
+.sz{display:inline-block;padding:7px 14px;border:1px solid var(--bd);border-radius:9px;margin-left:8px;background:var(--card)}.sz.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.qty{display:flex;align-items:center;gap:14px}.qty button{width:34px;height:34px;border-radius:50%;background:var(--card);border:1px solid var(--bd);font-size:18px}
+.btn{display:block;width:100%;padding:13px;border-radius:12px;background:var(--pri);color:#fff;font-weight:700;margin-top:10px;font-size:15px}
+.btn.o{background:none;border:2px solid var(--pri);color:var(--pri)}
+.sup{display:flex;gap:10px;margin-top:10px}.sup a{flex:1;text-align:center;padding:11px;border-radius:12px;color:#fff;text-decoration:none;font-weight:600;font-size:14px}
+.rv{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:13px}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px;margin:0 16px 12px}
+.ci{display:flex;gap:12px;align-items:center;margin-bottom:12px}.ci .pi{width:64px;height:64px;font-size:30px;border-radius:12px}.ci>div:nth-child(2){flex:1;font-size:13px}
+.ln{display:flex;justify-content:space-between;margin:6px 0;font-size:14px}.ln.tt{font-weight:800;font-size:17px;border-top:1px dashed var(--bd);padding-top:10px}
+input[type=text],select{width:100%;padding:11px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:14px}
+label.op{display:flex;gap:8px;align-items:center;padding:8px 0;font-size:14px}
+.stp{display:flex;margin:12px 0 4px}.stp div{flex:1;text-align:center;font-size:11px;color:var(--mut)}.stp div:before{content:"";display:block;height:6px;background:var(--bd);margin-bottom:5px;border-radius:3px}.stp div.d{color:var(--pri);font-weight:700}.stp div.d:before{background:var(--pri)}
+.back{padding:10px 16px;display:flex;justify-content:space-between;align-items:center}
+#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:20px;font-size:13px;opacity:0;transition:.3s;pointer-events:none}#toast.s{opacity:1}
+.emp{text-align:center;color:var(--mut);padding:50px 20px}
+</style>
+</head>
+<body>
+<div id="app"><div id="v"></div>
+<nav id="nv"></nav></div>
+<div id="toast"></div>
+<script>
+const P=[
+{id:1,n:"فستان صيفي أنيق",c:"نسائي",p:4800,r:4.7,e:"👗",g:["#f9a8d4","#f472b6"],b:1,cl:["#f472b6","#fff","#1e3a8a"],sz:["S","M","L","XL"]},
+{id:2,n:"قميص رجالي كلاسيك",c:"رجالي",p:3200,r:4.4,e:"👔",g:["#93c5fd","#3b82f6"],b:0,nw:1,cl:["#3b82f6","#fff","#111"],sz:["M","L","XL","XXL"]},
+{id:3,n:"حجاب شيفون فاخر",c:"نسائي",p:1500,r:4.8,e:"🧕",g:["#fde68a","#d4a437"],b:1,cl:["#d4a437","#0f7b5f","#111"],sz:["موحد"]},
+{id:4,n:"كريم ترطيب للبشرة",c:"عناية",p:2100,r:4.6,e:"🧴",g:["#bbf7d0","#4ade80"],b:1,cl:[],sz:["50مل","100مل"]},
+{id:5,n:"أحمر شفاه مات",c:"مكياج",p:1300,r:4.5,e:"💄",g:["#fca5a5","#dc2626"],nw:1,b:0,cl:["#dc2626","#9f1239","#f472b6"],sz:[]},
+{id:6,n:"عطر العود الملكي",c:"عطور",p:6500,r:4.9,e:"🌹",g:["#d8b4fe","#9333ea"],b:1,cl:[],sz:["50مل","100مل"]},
+{id:7,n:"جاكيت شتوي رجالي",c:"رجالي",p:7900,r:4.3,e:"🧥",g:["#a8a29e","#57534e"],nw:1,b:0,cl:["#57534e","#111"],sz:["M","L","XL"]},
+{id:8,n:"باليت ظلال العيون",c:"مكياج",p:2800,r:4.6,e:"🎨",g:["#fdba74","#ea580c"],nw:1,b:0,cl:[],sz:[]}];
+const C=[["الكل","✨"],["نسائي","👗"],["رجالي","👔"],["عناية","🧴"],["مكياج","💄"],["عطور","🌹"]];
+const S={scr:"home",pid:null,cart:[],fav:new Set([3]),promo:0,ship:600,pay:"cod",orders:[{id:"A-1042",st:2,t:"فستان صيفي أنيق",tot:5400}],cat:"الكل",sort:"pop",q:"",sel:{},qty:1,z:0,sl:0};
+const $=s=>document.querySelector(s),f=n=>n.toLocaleString("en")+" دج";
+const gr=p=>`background:linear-gradient(135deg,${p.g[0]},${p.g[1]})`;
+function toast(m){const t=$("#toast");t.textContent=m;t.className="s";setTimeout(()=>t.className="",1800)}
+function go(s,id){S.scr=s;if(id){S.pid=id;S.sel={};S.qty=1;S.z=0}draw();scrollTo(0,0)}
+function theme(){const d=document.documentElement,dk=d.dataset.theme?d.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;d.dataset.theme=dk?"light":"dark"}
+function tf(id){S.fav.has(id)?S.fav.delete(id):S.fav.add(id);draw()}
+function card(p){return `<div class="pc" onclick="go('prod',${p.id})"><div class="pi" style="${gr(p)}">${p.e}</div>${p.nw?'<span class="tag">جديد</span>':''}<button class="hb" onclick="event.stopPropagation();tf(${p.id})">${S.fav.has(p.id)?"❤️":"🤍"}</button><div class="t"><div class="n">${p.n}</div><div class="st">★ ${p.r}</div><div class="pr">${f(p.p)}</div></div></div>`}
+function head(){return `<header><div class="logo">سوق <span>أهراس</span></div><div><button class="ib" onclick="theme()">🌓</button> <button class="ib" onclick="toast('🔔 لا إشعارات جديدة')">🔔</button></div></header>`}
+function home(){
+const bn=[["خصم 30% على الملابس","استخدم الكود AKRAM2962005 لخصم إضافي","#0f7b5f,#2dd4a0"],["عناية بالبشرة","منتجات أصلية بأفضل الأسعار","#9333ea,#f472b6"],["وصل حديثاً","تشكيلة الخريف والشتاء","#b45309,#d4a437"]];
+return head()+`<button class="srch" onclick="go('search')">🔍 ابحث عن منتج...</button>
+<div class="ban">${bn.map((b,i)=>`<div class="sl ${i==S.sl?'on':''}" style="background:linear-gradient(135deg,${b[2]})"><b>${b[0]}</b><p>${b[1]}</p></div>`).join("")}</div>
+<div class="sec">الأقسام</div><div class="cats">${C.slice(1).map(c=>`<div class="cat" onclick="S.cat='${c[0]}';go('search')"><i>${c[1]}</i>${c[0]}</div>`).join("")}</div>
+<div class="sec">🔥 الأكثر مبيعاً</div><div class="row">${P.filter(p=>p.b).map(card).join("")}</div>
+<div class="sec">🆕 وصل حديثاً</div><div class="row">${P.filter(p=>p.nw).map(card).join("")}</div>`}
+function list(){let r=P.filter(p=>(S.cat=="الكل"||p.c==S.cat)&&p.n.includes(S.q));
+r.sort((a,b)=>S.sort=="lo"?a.p-b.p:S.sort=="hi"?b.p-a.p:S.sort=="rt"?b.r-a.r:b.b-a.b);
+return r.length?`<div class="grid">${r.map(card).join("")}</div>`:`<div class="emp">لا توجد نتائج</div>`}
+function search(){return head()+`<div class="pad"><input type="text" id="q" placeholder="🔍 ابحث..." value="${S.q}" oninput="S.q=this.value;sug();$('#res').innerHTML=list()"><div id="sg" style="font-size:12px;color:var(--mut);margin:6px 0"></div></div>
+<div class="chips">${C.map(c=>`<button class="chip ${S.cat==c[0]?'on':''}" onclick="S.cat='${c[0]}';draw()">${c[0]}</button>`).join("")}</div>
+<div class="pad" style="margin:12px 0"><select onchange="S.sort=this.value;$('#res').innerHTML=list()"><option value="pop" ${S.sort=="pop"?"selected":""}>الأكثر طلباً</option><option value="lo">السعر: الأقل</option><option value="hi">السعر: الأعلى</option><option value="rt">الأعلى تقييماً</option></select></div><div id="res">${list()}</div>`}
+function sug(){const m=S.q?P.filter(p=>p.n.includes(S.q)).slice(0,3):[];$("#sg").innerHTML=m.map(p=>`<span onclick="go('prod',${p.id})" style="margin-left:12px;cursor:pointer">${p.e} ${p.n}</span>`).join("")}
+function prod(){const p=P.find(x=>x.id==S.pid),sc=S.sel.c??0,ss=S.sel.s??0,msg=encodeURIComponent("مرحباً، أستفسر عن: "+p.n);
+return `<div class="back"><button class="ib" onclick="go('home')">→</button><button class="ib" onclick="tf(${p.id})">${S.fav.has(p.id)?"❤️":"🤍"}</button></div>
+<div class="big ${S.z?'z':''}" style="${gr(p)}" onclick="S.z=!S.z;draw()">${p.e}</div>
+<div class="th">${[p.e,"🔍","📷"].map(x=>`<div style="${gr(p)}">${x}</div>`).join("")}<span style="font-size:11px;color:var(--mut);align-self:center">اضغط على الصورة للتكبير</span></div>
+<div class="pad"><h2 style="font-size:20px">${p.n}</h2><div class="st" style="margin:4px 0">★ ${p.r} (${Math.round(p.r*23)} تقييم)</div><div class="pr" style="font-size:22px">${f(p.p)}</div>
+${p.cl.length?`<div class="lbl">اللون</div>${p.cl.map((c,i)=>`<span class="cl ${i==sc?'on':''}" style="background:${c}" onclick="S.sel.c=${i};draw()"></span>`).join("")}`:""}
+${p.sz.length?`<div class="lbl">المقاس</div>${p.sz.map((z,i)=>`<span class="sz ${i==ss?'on':''}" onclick="S.sel.s=${i};draw()">${z}</span>`).join("")}`:""}
+<div class="lbl">الكمية</div><div class="qty"><button onclick="S.qty++;draw()">+</button><b>${S.qty}</b><button onclick="S.qty=Math.max(1,S.qty-1);draw()">−</button></div>
+<button class="btn" onclick="add(${p.id});go('cart')">⚡ شراء الآن</button><button class="btn o" onclick="add(${p.id})">🛒 أضف للسلة</button>
+<div class="sup"><a style="background:#229ed9" href="https://t.me/elias_akram" target="_blank">تواصل معنا عبر تلغرام</a></div>
+<div class="lbl">آراء المشترين</div><div class="rv"><b>سارة</b> <span class="st">★★★★★</span><br>جودة ممتازة وتوصيل سريع، أنصح به.</div><div class="rv"><b>كريم</b> <span class="st">★★★★☆</span><br>المنتج مطابق للصور.</div></div>`}
+function add(id){const i=S.cart.find(x=>x.id==id);i?i.q+=S.qty:S.cart.push({id,q:S.qty});toast("تمت الإضافة للسلة ✓")}
+function cq(id,d){const i=S.cart.find(x=>x.id==id);i.q+=d;if(i.q<1)S.cart=S.cart.filter(x=>x.id!=id);draw()}
+function promo(){const v=$("#pc").value.trim().toUpperCase();if(v=="AKRAM2962005"){S.promo=.1;toast("تم تطبيق خصم 10% ✓")}else{S.promo=0;toast("كود غير صالح")}draw()}
+function tot(){const sub=S.cart.reduce((a,i)=>a+P.find(p=>p.id==i.id).p*i.q,0),d=Math.round(sub*S.promo);return{sub,d,t:sub-d+(sub?S.ship:0)}}
+function cart(){if(!S.cart.length)return head()+`<div class="emp">🛒<br>السلة فارغة</div>`;const T=tot();
+return `<div class="back"><b style="font-size:18px">السلة</b></div><div class="box">${S.cart.map(i=>{const p=P.find(x=>x.id==i.id);return `<div class="ci"><div class="pi" style="${gr(p)}">${p.e}</div><div>${p.n}<div class="pr">${f(p.p)}</div></div><div class="qty"><button onclick="cq(${p.id},1)">+</button><b>${i.q}</b><button onclick="cq(${p.id},-1)">−</button></div></div>`}).join("")}</div>
+<div class="box"><div class="lbl" style="margin-top:0">كود الخصم</div><div style="display:flex;gap:8px"><input type="text" id="pc" placeholder="AKRAM2962005"><button class="btn" style="width:90px;margin:0" onclick="promo()">تطبيق</button></div></div>
+<div class="box"><div class="lbl" style="margin-top:0">الشحن</div>${[[600,"توصيل للمنزل"],[400,"استلام من مكتب التوصيل"]].map(s=>`<label class="op"><input type="radio" name="sh" ${S.ship==s[0]?"checked":""} onchange="S.ship=${s[0]};draw()">${s[1]} — ${f(s[0])}</label>`).join("")}
+<div class="lbl">طريقة الدفع</div>${[["cod","💵 الدفع عند الاستلام"],["card","💳 بطاقة بنكية (CIB / الذهبية)"],["wal","📱 محفظة إلكترونية (بريدي موب)"]].map(s=>`<label class="op"><input type="radio" name="py" ${S.pay==s[0]?"checked":""} onchange="S.pay='${s[0]}'">${s[1]}</label>`).join("")}</div>
+<div class="box"><div class="ln"><span>المجموع</span><span>${f(T.sub)}</span></div>${T.d?`<div class="ln" style="color:var(--pri)"><span>الخصم</span><span>- ${f(T.d)}</span></div>`:""}<div class="ln"><span>الشحن</span><span>${f(S.ship)}</span></div><div class="ln tt"><span>الإجمالي</span><span>${f(T.t)}</span></div><button class="btn" onclick="order()">تأكيد الطلب</button></div>`}
+function order(){const T=tot();const L=S.cart.map(i=>{const p=P.find(x=>x.id==i.id);return "• "+p.n+" × "+i.q+" = "+f(p.p*i.q)}).join("\n");const pm={cod:"الدفع عند الاستلام",card:"بطاقة بنكية",wal:"محفظة إلكترونية"}[S.pay];
+const msg="طلب جديد - سوق أهراس\n"+L+"\nالشحن: "+f(S.ship)+(T.d?"\nالخصم: "+f(T.d):"")+"\nالإجمالي: "+f(T.t)+"\nالدفع: "+pm+"\n\nالاسم:\nالولاية/العنوان:\nرقم الهاتف:";
+S.orders.unshift({id:"A-"+(1043+S.orders.length),st:0,t:S.cart.map(i=>P.find(p=>p.id==i.id).n).join("، "),tot:T.t});S.cart=[];S.promo=0;
+try{navigator.clipboard.writeText(msg)}catch(e){}
+toast("تم نسخ الطلب، الصقه في محادثة تلغرام 📋");go("acc");setTimeout(()=>{try{window.open("https://t.me/elias_akram","_blank")}catch(e){}},1200)}
+function fav(){const r=P.filter(p=>S.fav.has(p.id));return head()+`<div class="sec" style="margin-top:0">❤️ المفضلة</div>`+(r.length?`<div class="grid">${r.map(card).join("")}</div>`:`<div class="emp">لا توجد منتجات مفضلة</div>`)}
+function acc(){const L=["قيد المعالجة","تم الشحن","تم التسليم"];
+return head()+`<div class="box" style="display:flex;gap:12px;align-items:center"><div class="pi" style="width:54px;height:54px;border-radius:50%;background:var(--pri);font-size:26px">👤</div><div><b>مرحباً بك</b><div style="font-size:12px;color:var(--mut)">سوق أهراس</div></div></div><div class="sec" style="margin-top:6px">📦 طلباتي</div>`+
+S.orders.map(o=>`<div class="box"><div class="ln"><b>${o.id}</b><span class="pr">${f(o.tot)}</span></div><div style="font-size:12px;color:var(--mut)">${o.t}</div><div class="stp">${L.map((l,i)=>`<div class="${i<=o.st?'d':''}">${l}</div>`).join("")}</div></div>`).join("")}
+function draw(){const m={home,search,prod,cart,fav,acc};$("#v").innerHTML=m[S.scr]();const n=S.cart.reduce((a,i)=>a+i.q,0),t=S.scr=="prod"?"home":S.scr;
+$("#nv").innerHTML=[["home","🏠","الرئيسية"],["search","🔍","بحث"],["cart","🛒","السلة"],["fav","❤️","المفضلة"],["acc","👤","حسابي"]].map(x=>`<button class="${x[0]==t?'on':''}" onclick="go('${x[0]}')"><b>${x[1]}</b>${x[2]}${x[0]=="cart"&&n?`<span class="bd">${n}</span>`:""}</button>`).join("")}
+draw();setInterval(()=>{if(S.scr=="home"){S.sl=(S.sl+1)%3;document.querySelectorAll(".sl").forEach((e,i)=>e.classList.toggle("on",i==S.sl))}},3000);
+</script>
+</body>
+</html>
