@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="google-site-verification" content="SKjCCP7A45pAUZokWUQwh6VRhCSLmPbmiZegsJ_6z80" />
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f7b5f">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="تيمو وعلي">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>منتجات تيمو وعلي اكسبراس في الجزائر | ملابس وعطور وكوزمتيك - توصيل لجميع الولايات</title>
 <meta name="description" content="منتجات تيمو وعلي إكسبرس في الجزائر: ملابس، كوزمتيك، مستحضرات تجميل، عطور وإكسسوارات أطفال مع توصيل لجميع الولايات. الدفع عبر بريدي موب أو تحويل بنكي، والشحن مجاني، والاستلام من مكتب البريد.">
@@ -116,7 +122,7 @@ function go(s,id){S.scr=s;if(id){S.pid=id;S.sel={};S.qty=1;S.z=0;S.gi=0;S.rs=0}d
 function theme(){const d=document.documentElement,dk=d.dataset.theme?d.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;d.dataset.theme=dk?"light":"dark"}
 function tf(id){S.fav.has(id)?S.fav.delete(id):S.fav.add(id);draw()}
 function card(p){return `<div class="pc" onclick="go('prod',${p.id})"><div class="pi" style="${sty(p)}">${ico(p)}</div>${p.nw?'<span class="tag">جديد</span>':''}${p.op?`<span class="dc">-${Math.round((1-p.p/p.op)*100)}%</span>`:""}<button class="qa" onclick="event.stopPropagation();qadd(${p.id})">+</button><button class="hb" onclick="event.stopPropagation();tf(${p.id})">${S.fav.has(p.id)?"❤️":"🤍"}</button><div class="t"><div class="n">${p.n}</div>${av(p.id)?`<div class="st">★ ${av(p.id).toFixed(1)} (${rs(p.id).length})</div>`:""}<div class="pr">${f(p.p)}${p.op?` <s style="color:var(--mut);font-size:11px;font-weight:400">${f(p.op)}</s>`:""}</div></div></div>`}
-function head(){return `<header><div class="logo"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#0f7b5f"/><path d="M9 12h14l-1.2 11H10.2z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M12.5 12V10a3.5 3.5 0 017 0v2" fill="none" stroke="#d4a437" stroke-width="2" stroke-linecap="round"/></svg><div>منتجات تيمو و<span>علي اكسبراس</span> في الجزائر</div></div><div><button class="ib" onclick="theme()">🌓</button> <button class="ib" onclick="toast('🔔 لا إشعارات جديدة')">🔔</button></div></header>`}
+function head(){return `<header><div class="logo"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#0f7b5f"/><path d="M9 12h14l-1.2 11H10.2z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M12.5 12V10a3.5 3.5 0 017 0v2" fill="none" stroke="#d4a437" stroke-width="2" stroke-linecap="round"/></svg><div>منتجات تيمو و<span>علي اكسبراس</span> في الجزائر</div></div><div>${window.dp?'<button class="ib" onclick="inst()">📲</button> ':''}<button class="ib" onclick="theme()">🌓</button> <button class="ib" onclick="toast('🔔 لا إشعارات جديدة')">🔔</button></div></header>`}
 const INFO=`<div style="font-size:13px;line-height:2"><b>معلومات الطلب</b><br>• الدفع مسبقاً عبر بريدي موب أو تحويل بنكي (حسب اختيارك).<br>• الشحن مجاني.<br>• الاستلام من مكتب البريد.<br>• مدة التوصيل من 15 يوماً إلى شهر تقريباً، لأن المنتجات تُطلب من مواقع عالمية بعد تأكيد الدفع.<br>• بعد تأكيد الطلب نتواصل معك على تلغرام ونرسل لك رقم الحساب حسب طريقة الدفع التي اخترتها.<br>• الاستبدال مقبول.</div>`;
 const sect=(t,a)=>a.length?`<div class="sec">${t}</div><div class="row">${a.map(card).join("")}</div>`:"";
 function home(){
@@ -169,6 +175,9 @@ return head()+`<div class="box" style="display:flex;gap:12px;align-items:center"
 function draw(){const m={home,search,prod,cart,fav,acc};$("#v").innerHTML=m[S.scr]();const n=S.cart.reduce((a,i)=>a+i.q,0),t=S.scr=="prod"?"home":S.scr;
 $("#nv").innerHTML=[["home","🏠","الرئيسية"],["search","🔍","بحث"],["cart","🛒","السلة"],["fav","❤️","المفضلة"],["acc","👤","حسابي"]].map(x=>`<button class="${x[0]==t?'on':''}" onclick="go('${x[0]}')"><b>${x[1]}</b>${x[2]}${x[0]=="cart"&&n?`<span class="bd">${n}</span>`:""}</button>`).join("")}
 draw();setInterval(()=>{if(S.scr=="home"){S.sl=(S.sl+1)%(S.nb||2);document.querySelectorAll(".sl").forEach((e,i)=>e.classList.toggle("on",i==S.sl))}},3000);
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();window.dp=e;draw()});
+function inst(){if(!window.dp)return;window.dp.prompt();window.dp=null;draw()}
+if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 </script>
 <a class="fl" href="https://t.me/elias_akram" target="_blank" aria-label="تلغرام"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M21.9 3.4 2.6 10.8c-.9.3-.9 1.2 0 1.5l4.9 1.5 1.9 5.9c.2.7 1 .8 1.4.3l2.7-2.6 4.9 3.6c.6.4 1.3.1 1.5-.6L23 4.5c.2-.8-.4-1.4-1.1-1.1zM9 14.5l9.5-6-7.3 7.7-.3 3.1z"/></svg></a>
 </body>
