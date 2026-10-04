@@ -16,17 +16,17 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{background:var(--bg);color:var(--tx);display:flex;justify-content:center}
 #app{width:100%;max-width:440px;min-height:100vh;padding-bottom:76px;position:relative}
 header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
-.logo{font-size:16px;line-height:1.5;font-weight:800;color:var(--pri);max-width:290px}.logo span{color:var(--acc)}
+.logo{display:flex;align-items:center;gap:8px;font-size:16px;line-height:1.5;font-weight:800;color:var(--pri);max-width:290px}.logo span{color:var(--acc)}
 button{cursor:pointer;border:0;background:none;color:inherit;font-size:14px}
 .ib{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--bd);font-size:17px}
 .sec{padding:0 16px;margin:18px 0 10px;display:flex;justify-content:space-between;font-weight:700}
 .sec small{color:var(--pri);font-weight:500}
 .srch{margin:0 16px;padding:12px 14px;background:var(--card);border:1px solid var(--bd);border-radius:12px;color:var(--mut);width:calc(100% - 32px);text-align:right}
-.ban{margin:14px 16px 0;height:140px;border-radius:18px;overflow:hidden;position:relative}
+.ban{margin:14px 16px 0;height:170px;border-radius:18px;overflow:hidden;position:relative}
 .sl{position:absolute;inset:0;padding:22px;color:#fff;display:flex;flex-direction:column;justify-content:center;opacity:0;transition:opacity .6s}
 .sl.on{opacity:1}.sl b{font-size:22px}.sl p{margin-top:6px;opacity:.9}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:0 16px}
-.chip{padding:8px 14px;border-radius:20px;background:var(--card);border:1px solid var(--bd);white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:20px;background:var(--card);border:1px solid var(--bd);white-space:nowrap}
 .chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
 .cats{display:flex;gap:12px;overflow-x:auto;padding:0 16px}
 .cat{text-align:center;font-size:12px;min-width:64px}.cat i{display:flex;width:58px;height:58px;margin:0 auto 5px;border-radius:50%;background:var(--card);border:1px solid var(--bd);align-items:center;justify-content:center;font-size:26px;font-style:normal}
@@ -43,6 +43,11 @@ nav button{flex:1;padding:10px 0;font-size:11px;color:var(--mut);position:relati
 .big{height:260px;display:flex;align-items:center;justify-content:center;font-size:120px;overflow:hidden;cursor:zoom-in;transition:.3s}
 .big.z{font-size:230px;cursor:zoom-out}
 .big.sq{height:auto;aspect-ratio:1/1;max-height:80vh}
+.sb{align-self:flex-start;background:#fff;color:var(--pri);padding:6px 14px;border-radius:20px;margin-top:8px;font-weight:700;font-size:13px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 16px 0}.trust div{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 4px;text-align:center;font-size:11px;line-height:1.5}.trust b{display:block;font-size:20px}
+.qa{position:absolute;top:84px;left:8px;width:32px;height:32px;border-radius:50%;background:var(--pri);color:#fff;font-size:20px;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.dc{position:absolute;top:84px;right:8px;background:#e11d48;color:#fff;font-weight:800;font-size:12px;padding:3px 7px;border-radius:8px}
+.fl{position:fixed;bottom:92px;left:max(16px,calc(50% - 204px));width:52px;height:52px;border-radius:50%;background:#229ed9;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.3);z-index:50}
 .th{display:flex;gap:8px;padding:10px 16px}.th div{width:54px;height:54px;border-radius:10px;border:2px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:24px}
 .pad{padding:0 16px}.lbl{margin:14px 0 8px;font-weight:700;font-size:14px}
 .cl{display:inline-block;width:30px;height:30px;border-radius:50%;border:3px solid var(--bd);margin-left:8px}.cl.on{border-color:var(--pri)}
@@ -103,24 +108,28 @@ return `<div id="rvs" class="lbl" style="margin-top:22px;font-size:16px">⭐ ت�
 <div class="box" style="margin:0 0 12px">${a.length?`<div style="text-align:center"><div style="font-size:34px;font-weight:800">${m.toFixed(1)}</div><div class="stars">${stars(m)}</div><div style="font-size:12px;color:var(--mut)">${a.length} تقييم</div></div>`:`<div style="text-align:center;color:var(--mut);font-size:13px">لا توجد تقييمات بعد، كن أول من يقيّم المنتج</div>`}</div>
 <div class="box" style="margin:0 0 12px"><div class="lbl" style="margin-top:0">أضف رأيك</div><div id="stp" class="stars pk">${[1,2,3,4,5].map(i=>`<span onclick="setStar(${i})">☆</span>`).join("")}</div><input type="text" id="rn" placeholder="اسمك (اختياري)" maxlength="30" style="margin:8px 0"><textarea id="rt" placeholder="اكتب رأيك في المنتج..." maxlength="300"></textarea><button class="btn" onclick="addRev(${p.id})">إرسال التقييم</button></div>
 ${a.map(r=>`<div class="rv"><div style="display:flex;justify-content:space-between"><b>${esc(r.n)}</b><span class="stars">${stars(r.s)}</span></div><div style="margin:6px 0">${esc(r.t)}</div><div style="font-size:11px;color:var(--mut)">${r.d}</div></div>`).join("")}`}
+const WIL=["أدرار", "الشلف", "الأغواط", "أم البواقي", "باتنة", "بجاية", "بسكرة", "بشار", "البليدة", "البويرة", "تمنراست", "تبسة", "تلمسان", "تيارت", "تيزي وزو", "الجزائر", "الجلفة", "جيجل", "سطيف", "سعيدة", "سكيكدة", "سيدي بلعباس", "عنابة", "قالمة", "قسنطينة", "المدية", "مستغانم", "المسيلة", "معسكر", "ورقلة", "وهران", "البيض", "إليزي", "برج بوعريريج", "بومرداس", "الطارف", "تندوف", "تيسمسيلت", "الوادي", "خنشلة", "سوق أهراس", "تيبازة", "ميلة", "عين الدفلى", "النعامة", "عين تموشنت", "غرداية", "غليزان", "تيميمون", "برج باجي مختار", "أولاد جلال", "بني عباس", "إن صالح", "إن قزام", "توقرت", "جانت", "المغير", "المنيعة", "ولاية أخرى"];
+const ci=c=>{const p=P.find(x=>x.c==c[0]&&x.im);return p?`<img src="${p.im[0]}" style="width:26px;height:26px;border-radius:50%;object-fit:cover">`:c[1]};
+const trust=()=>`<div class="trust"><div><b>🚚</b>توصيل لجميع الولايات</div><div><b>💳</b>بريدي موب أو تحويل بنكي</div><div><b>🔄</b>ضمان الاستبدال ومعاينة المنتج</div></div>`;
+function qadd(id){const p=P.find(x=>x.id==id);if(p.cl.length||p.sz.length){go("prod",id);return}const q=S.qty;S.qty=1;add(id);S.qty=q;draw()}
 function go(s,id){S.scr=s;if(id){S.pid=id;S.sel={};S.qty=1;S.z=0;S.gi=0;S.rs=0}draw();scrollTo(0,0)}
 function theme(){const d=document.documentElement,dk=d.dataset.theme?d.dataset.theme=="dark":matchMedia("(prefers-color-scheme:dark)").matches;d.dataset.theme=dk?"light":"dark"}
 function tf(id){S.fav.has(id)?S.fav.delete(id):S.fav.add(id);draw()}
-function card(p){return `<div class="pc" onclick="go('prod',${p.id})"><div class="pi" style="${sty(p)}">${ico(p)}</div>${p.nw?'<span class="tag">جديد</span>':''}<button class="hb" onclick="event.stopPropagation();tf(${p.id})">${S.fav.has(p.id)?"❤️":"🤍"}</button><div class="t"><div class="n">${p.n}</div>${av(p.id)?`<div class="st">★ ${av(p.id).toFixed(1)} (${rs(p.id).length})</div>`:""}<div class="pr">${f(p.p)}</div></div></div>`}
-function head(){return `<header><div class="logo">منتجات تيمو و<span>علي اكسبراس</span> في الجزائر</div><div><button class="ib" onclick="theme()">🌓</button> <button class="ib" onclick="toast('🔔 لا إشعارات جديدة')">🔔</button></div></header>`}
+function card(p){return `<div class="pc" onclick="go('prod',${p.id})"><div class="pi" style="${sty(p)}">${ico(p)}</div>${p.nw?'<span class="tag">جديد</span>':''}${p.op?`<span class="dc">-${Math.round((1-p.p/p.op)*100)}%</span>`:""}<button class="qa" onclick="event.stopPropagation();qadd(${p.id})">+</button><button class="hb" onclick="event.stopPropagation();tf(${p.id})">${S.fav.has(p.id)?"❤️":"🤍"}</button><div class="t"><div class="n">${p.n}</div>${av(p.id)?`<div class="st">★ ${av(p.id).toFixed(1)} (${rs(p.id).length})</div>`:""}<div class="pr">${f(p.p)}${p.op?` <s style="color:var(--mut);font-size:11px;font-weight:400">${f(p.op)}</s>`:""}</div></div></div>`}
+function head(){return `<header><div class="logo"><svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#0f7b5f"/><path d="M9 12h14l-1.2 11H10.2z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="M12.5 12V10a3.5 3.5 0 017 0v2" fill="none" stroke="#d4a437" stroke-width="2" stroke-linecap="round"/></svg><div>منتجات تيمو و<span>علي اكسبراس</span> في الجزائر</div></div><div><button class="ib" onclick="theme()">🌓</button> <button class="ib" onclick="toast('🔔 لا إشعارات جديدة')">🔔</button></div></header>`}
 const INFO=`<div style="font-size:13px;line-height:2"><b>معلومات الطلب</b><br>• الدفع مسبقاً عبر بريدي موب أو تحويل بنكي (حسب اختيارك).<br>• الشحن مجاني.<br>• الاستلام من مكتب البريد.<br>• مدة التوصيل من 15 يوماً إلى شهر تقريباً، لأن المنتجات تُطلب من مواقع عالمية بعد تأكيد الدفع.<br>• بعد تأكيد الطلب نتواصل معك على تلغرام ونرسل لك رقم الحساب حسب طريقة الدفع التي اخترتها.<br>• الاستبدال مقبول.</div>`;
 const sect=(t,a)=>a.length?`<div class="sec">${t}</div><div class="row">${a.map(card).join("")}</div>`:"";
 function home(){
-const bn=[["مرحباً بك في منتجات تيمو وعلي اكسبراس في الجزائر","ملابس ومستحضرات تجميل وإكسسوارات","#0f7b5f,#2dd4a0"],["وصل حديثاً","طقم فرش مكياج العيون بـ 300 دج","#9333ea,#f472b6"]];
+const bn=[["مرحباً بك في منتجات تيمو وعلي اكسبراس في الجزائر","ملابس ومستحضرات تجميل وإكسسوارات","linear-gradient(135deg,#0f7b5f,#2dd4a0)","search"]].concat(P.filter(p=>p.im).slice(-3).reverse().map(p=>[p.n,f(p.p),"linear-gradient(90deg,rgba(0,0,0,.65),rgba(0,0,0,.05)),url("+p.im[0]+") center/cover",p.id]));S.nb=bn.length;
 return head()+`<button class="srch" onclick="go('search')">🔍 ابحث عن منتج...</button>
-<div class="ban">${bn.map((b,i)=>`<div class="sl ${i==S.sl?'on':''}" style="background:linear-gradient(135deg,${b[2]})"><b>${b[0]}</b><p>${b[1]}</p></div>`).join("")}</div>
-<div class="sec">الأقسام</div><div class="chips">${CS.slice(1).map(c=>`<button class="chip" onclick="S.cat='${c[0]}';go('search')">${c[0]}</button>`).join("")}</div>
+<div class="ban">${bn.map((b,i)=>`<div class="sl ${i==S.sl?'on':''}" style="background:${b[2]}"><b>${b[0]}</b><p>${b[1]}</p><button class="sb" onclick="${b[3]=='search'?"go('search')":"go('prod',"+b[3]+")"}">تسوق الآن</button></div>`).join("")}</div>
+${trust()}<div class="sec">الأقسام</div><div class="chips">${CS.slice(1).map(c=>`<button class="chip" onclick="S.cat='${c[0]}';go('search')">${ci(c)} ${c[0]}</button>`).join("")}</div>
 ${sect("الأكثر مبيعاً",P.filter(p=>p.b))}${sect("وصل حديثاً",P.filter(p=>p.nw))}<div class="box" style="margin-top:20px">${INFO}</div>`}
 function list(){let r=P.filter(p=>(S.cat=="الكل"||p.c==S.cat)&&p.n.includes(S.q));
 r.sort((a,b)=>S.sort=="lo"?a.p-b.p:S.sort=="hi"?b.p-a.p:S.sort=="rt"?av(b.id)-av(a.id):b.b-a.b);
 return r.length?`<div class="grid">${r.map(card).join("")}</div>`:`<div class="emp">لا توجد نتائج</div>`}
 function search(){return head()+`<div class="pad"><input type="text" id="q" placeholder="🔍 ابحث..." value="${S.q}" oninput="S.q=this.value;sug();$('#res').innerHTML=list()"><div id="sg" style="font-size:12px;color:var(--mut);margin:6px 0"></div></div>
-<div class="chips">${CS.map(c=>`<button class="chip ${S.cat==c[0]?'on':''}" onclick="S.cat='${c[0]}';draw()">${c[0]}</button>`).join("")}</div>
+<div class="chips">${CS.map(c=>`<button class="chip ${S.cat==c[0]?'on':''}" onclick="S.cat='${c[0]}';draw()">${ci(c)} ${c[0]}</button>`).join("")}</div>
 <div class="pad" style="margin:12px 0"><select onchange="S.sort=this.value;$('#res').innerHTML=list()"><option value="pop" ${S.sort=="pop"?"selected":""}>الأكثر طلباً</option><option value="lo">السعر: الأقل</option><option value="hi">السعر: الأعلى</option><option value="rt">الأعلى تقييماً</option></select></div><div id="res">${list()}</div>`}
 function sug(){const m=S.q?P.filter(p=>p.n.includes(S.q)).slice(0,3):[];$("#sg").innerHTML=m.map(p=>`<span onclick="go('prod',${p.id})" style="margin-left:12px;cursor:pointer">${p.e} ${p.n}</span>`).join("")}
 function prod(){const p=P.find(x=>x.id==S.pid),sc=S.sel.c??0,ss=S.sel.s??0,msg=encodeURIComponent("مرحباً، أستفسر عن: "+p.n);
@@ -144,10 +153,10 @@ function tot(){const sub=S.cart.reduce((a,i)=>a+P.find(p=>p.id==i.id).p*i.q,0),d
 function cart(){if(!S.cart.length)return head()+`<div class="emp">🛒<br>السلة فارغة</div>`;const T=tot(),I=S.inf||(S.inf={});
 return `<div class="back"><b style="font-size:18px">السلة</b></div><div class="box">${S.cart.map((i,k)=>{const p=P.find(x=>x.id==i.id);return `<div class="ci"><div class="pi" style="${sty(p)}">${ico(p)}</div><div>${p.n}${(i.c||i.s)?`<div style="font-size:12px;color:var(--mut)">${[i.c,i.s].filter(Boolean).join(" · ")}</div>`:""}<div class="pr">${f(p.p)}</div></div><div class="qty"><button onclick="cq(${k},1)">+</button><b>${i.q}</b><button onclick="cq(${k},-1)">−</button></div></div>`}).join("")}</div>
 <div class="box"><div class="lbl" style="margin-top:0">كود الخصم</div><div style="display:flex;gap:8px"><input type="text" id="pc" placeholder="كود الخصم"><button class="btn" style="width:90px;margin:0" onclick="promo()">تطبيق</button></div></div>
-<div class="box"><div class="lbl" style="margin-top:0">معلومات التوصيل</div><input type="text" placeholder="الاسم واللقب" value="${esc(I.n||'')}" oninput="S.inf.n=this.value" style="margin-bottom:8px"><input type="text" placeholder="الولاية" value="${esc(I.w||'')}" oninput="S.inf.w=this.value" style="margin-bottom:8px"><input type="text" placeholder="أقرب مكتب بريد" value="${esc(I.b||'')}" oninput="S.inf.b=this.value"></div>
+<div class="box"><div class="lbl" style="margin-top:0">معلومات التوصيل</div><input type="text" placeholder="الاسم واللقب" value="${esc(I.n||'')}" oninput="S.inf.n=this.value" style="margin-bottom:8px"><select onchange="S.inf.w=this.value;draw()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:14px;margin-bottom:8px"><option value="">اختر الولاية</option>${WIL.map(w=>`<option ${I.w==w?"selected":""}>${w}</option>`).join("")}</select><input type="text" placeholder="أقرب مكتب بريد" value="${esc(I.b||'')}" oninput="S.inf.b=this.value"></div>
 <div class="box"><div class="lbl" style="margin-top:0">طريقة الدفع</div><label class="op"><input type="radio" name="pay" ${S.pay=="baridi"?"checked":""} onchange="S.pay='baridi'"> بريدي موب</label><label class="op"><input type="radio" name="pay" ${S.pay=="bank"?"checked":""} onchange="S.pay='bank'"> تحويل بنكي</label></div>
 <div class="box">${INFO}</div>
-<div class="box"><div class="ln"><span>المجموع</span><span>${f(T.sub)}</span></div>${T.d?`<div class="ln" style="color:var(--pri)"><span>الخصم</span><span>- ${f(T.d)}</span></div>`:""}<div class="ln tt"><span>المدفوع مسبقاً</span><span>${f(T.t)}</span></div><button class="btn" onclick="order()">تأكيد الطلب</button></div>`}
+<div class="box"><div class="ln"><span>المجموع</span><span>${f(T.sub)}</span></div>${T.d?`<div class="ln" style="color:var(--pri)"><span>الخصم</span><span>- ${f(T.d)}</span></div>`:""}<div class="ln"><span>التوصيل${I.w?" إلى "+I.w:""}</span><span style="color:var(--pri)">مجاني (0 دج)</span></div><div class="ln tt"><span>المدفوع مسبقاً</span><span>${f(T.t)}</span></div><button class="btn" onclick="order()">تأكيد الطلب</button></div>`}
 function order(){const I=S.inf||{};if(!(I.n||"").trim()||!(I.w||"").trim()||!(I.b||"").trim()){toast("أكمل معلومات التوصيل أولاً");return}const T=tot();const L=S.cart.map(i=>{const p=P.find(x=>x.id==i.id);return "• "+p.n+((i.c||i.s)?" ("+[i.c,i.s].filter(Boolean).join("، ")+")":"")+" × "+i.q+" = "+f(p.p*i.q)}).join("\n");
 const msg="طلب جديد - منتجات تيمو وعلي اكسبراس في الجزائر\n"+L+(T.d?"\nالخصم: "+f(T.d):"")+"\nالمدفوع مسبقاً: "+f(T.t)+"\nالشحن: مجاني\nالدفع: "+(S.pay=="bank"?"تحويل بنكي":"عبر بريدي موب")+"\nالاستلام: من مكتب البريد\nمدة التوصيل: من 15 يوماً إلى شهر تقريباً\n\nالاسم: "+I.n.trim()+"\nالولاية: "+I.w.trim()+"\nأقرب مكتب بريد: "+I.b.trim();
 S.orders.unshift({id:"A-"+(1001+S.orders.length),st:0,t:S.cart.map(i=>P.find(p=>p.id==i.id).n).join("، "),tot:T.t});S.cart=[];S.promo=0;
@@ -159,7 +168,8 @@ return head()+`<div class="box" style="display:flex;gap:12px;align-items:center"
 (S.orders.length?S.orders.map(o=>`<div class="box"><div class="ln"><b>${o.id}</b><span class="pr">${f(o.tot)}</span></div><div style="font-size:12px;color:var(--mut)">${o.t}</div><div class="stp">${L.map((l,i)=>`<div class="${i<=o.st?'d':''}">${l}</div>`).join("")}</div></div>`).join(""):'<div class="emp">لا توجد طلبات بعد</div>')}
 function draw(){const m={home,search,prod,cart,fav,acc};$("#v").innerHTML=m[S.scr]();const n=S.cart.reduce((a,i)=>a+i.q,0),t=S.scr=="prod"?"home":S.scr;
 $("#nv").innerHTML=[["home","🏠","الرئيسية"],["search","🔍","بحث"],["cart","🛒","السلة"],["fav","❤️","المفضلة"],["acc","👤","حسابي"]].map(x=>`<button class="${x[0]==t?'on':''}" onclick="go('${x[0]}')"><b>${x[1]}</b>${x[2]}${x[0]=="cart"&&n?`<span class="bd">${n}</span>`:""}</button>`).join("")}
-draw();setInterval(()=>{if(S.scr=="home"){S.sl=(S.sl+1)%2;document.querySelectorAll(".sl").forEach((e,i)=>e.classList.toggle("on",i==S.sl))}},3000);
+draw();setInterval(()=>{if(S.scr=="home"){S.sl=(S.sl+1)%(S.nb||2);document.querySelectorAll(".sl").forEach((e,i)=>e.classList.toggle("on",i==S.sl))}},3000);
 </script>
+<a class="fl" href="https://t.me/elias_akram" target="_blank" aria-label="تلغرام"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M21.9 3.4 2.6 10.8c-.9.3-.9 1.2 0 1.5l4.9 1.5 1.9 5.9c.2.7 1 .8 1.4.3l2.7-2.6 4.9 3.6c.6.4 1.3.1 1.5-.6L23 4.5c.2-.8-.4-1.4-1.1-1.1zM9 14.5l9.5-6-7.3 7.7-.3 3.1z"/></svg></a>
 </body>
 </html>
