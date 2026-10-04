@@ -5,7 +5,7 @@
 <meta name="google-site-verification" content="SKjCCP7A45pAUZokWUQwh6VRhCSLmPbmiZegsJ_6z80" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>منتجات تيمو وعلي اكسبراس في الجزائر | ملابس وعطور وكوزمتيك - توصيل لجميع الولايات</title>
-<meta name="description" content="منتجات تيمو وعلي إكسبرس في الجزائر: ملابس، كوزمتيك، مستحضرات تجميل، عطور وإكسسوارات أطفال مع توصيل لجميع الولايات. الدفع عبر بريدي موب والاستلام من مكتب البريد.">
+<meta name="description" content="منتجات تيمو وعلي إكسبرس في الجزائر: ملابس، كوزمتيك، مستحضرات تجميل، عطور وإكسسوارات أطفال مع توصيل لجميع الولايات. الدفع عبر بريدي موب أو تحويل بنكي، والشحن مجاني، والاستلام من مكتب البريد.">
 <meta name="keywords" content="منتجات تيمو في الجزائر, منتجات علي إكسبرس في الجزائر, تيمو الجزائر, علي اكسبراس الجزائر, سوق أهراس, سوق أهراس ملابس, سوق أهراس كوزمتيك, سوق أهراس عطور, مستحضرات تجميل الجزائر, اكسسوارات شعر, توصيل لجميع الولايات, بريدي موب">
 <style>
 :root{--bg:#f6f4ef;--card:#fff;--tx:#1d2420;--mut:#6b756f;--pri:#0f7b5f;--acc:#d4a437;--bd:#e5e1d8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -77,7 +77,7 @@ const P=[
 {id:10,n:"ربطات شعر مرنة ملونة للبنات (101 قطعة)",c:"اطفال",p:280,r:0,e:"🎀",g:["#fde68a","#f472b6"],nw:1,b:0,cl:[],sz:[],im:[IM3,IM4],d:"ربطات شعر مرنة من النايلون بألوان زاهية، 101 قطعة، مناسبة للبنات والنساء لتسريحة ذيل الحصان وإكسسوارات الشعر العصرية. قطر الربطة حوالي 2 سم."}];
 const C=[["الكل","✨"],["نسائي","👗"],["رجالي","👔"],["عناية","🧴"],["مكياج","💄"],["عطور","🌹"],["اطفال","🧸"]];
 const CS=C.filter(c=>c[0]=="الكل"||P.some(p=>p.c==c[0]));
-const S={scr:"home",pid:null,cart:[],fav:new Set(),promo:0,ship:200,pay:"baridi",orders:[],cat:"الكل",sort:"pop",q:"",sel:{},qty:1,z:0,sl:0};
+const S={scr:"home",pid:null,cart:[],fav:new Set(),promo:0,ship:0,pay:"baridi",orders:[],cat:"الكل",sort:"pop",q:"",sel:{},qty:1,z:0,sl:0};
 const $=s=>document.querySelector(s),f=n=>n.toLocaleString("en")+" دج";
 const gr=p=>`background:linear-gradient(135deg,${p.g[0]},${p.g[1]})`;
 function toast(m){const t=$("#toast");t.textContent=m;t.className="s";setTimeout(()=>t.className="",1800)}
@@ -102,7 +102,7 @@ function theme(){const d=document.documentElement,dk=d.dataset.theme?d.dataset.t
 function tf(id){S.fav.has(id)?S.fav.delete(id):S.fav.add(id);draw()}
 function card(p){return `<div class="pc" onclick="go('prod',${p.id})"><div class="pi" style="${sty(p)}">${ico(p)}</div>${p.nw?'<span class="tag">جديد</span>':''}<button class="hb" onclick="event.stopPropagation();tf(${p.id})">${S.fav.has(p.id)?"❤️":"🤍"}</button><div class="t"><div class="n">${p.n}</div>${av(p.id)?`<div class="st">★ ${av(p.id).toFixed(1)} (${rs(p.id).length})</div>`:""}<div class="pr">${f(p.p)}</div></div></div>`}
 function head(){return `<header><div class="logo">منتجات تيمو و<span>علي اكسبراس</span> في الجزائر</div><div><button class="ib" onclick="theme()">🌓</button> <button class="ib" onclick="toast('🔔 لا إشعارات جديدة')">🔔</button></div></header>`}
-const INFO=`<div style="font-size:13px;line-height:2"><b>معلومات الطلب</b><br>• الدفع مسبقاً عبر بريدي موب فقط.<br>• الاستلام من مكتب البريد.<br>• مدة التوصيل من 15 يوماً إلى شهر تقريباً، لأن المنتجات تُطلب من مواقع عالمية بعد تأكيد الدفع.<br>• رسوم الشحن 200 دج تُدفع عند استلام المنتج في مكتب البريد.<br>• بعد تأكيد الطلب نتواصل معك على تلغرام ونرسل لك رقم حساب بريدي موب.<br>• الاستبدال مقبول.</div>`;
+const INFO=`<div style="font-size:13px;line-height:2"><b>معلومات الطلب</b><br>• الدفع مسبقاً عبر بريدي موب أو تحويل بنكي (حسب اختيارك).<br>• الشحن مجاني.<br>• الاستلام من مكتب البريد.<br>• مدة التوصيل من 15 يوماً إلى شهر تقريباً، لأن المنتجات تُطلب من مواقع عالمية بعد تأكيد الدفع.<br>• بعد تأكيد الطلب نتواصل معك على تلغرام ونرسل لك رقم الحساب حسب طريقة الدفع التي اخترتها.<br>• الاستبدال مقبول.</div>`;
 const sect=(t,a)=>a.length?`<div class="sec">${t}</div><div class="row">${a.map(card).join("")}</div>`:"";
 function home(){
 const bn=[["مرحباً بك في منتجات تيمو وعلي اكسبراس في الجزائر","ملابس ومستحضرات تجميل وإكسسوارات","#0f7b5f,#2dd4a0"],["وصل حديثاً","طقم فرش مكياج العيون بـ 300 دج","#9333ea,#f472b6"]];
@@ -137,10 +137,11 @@ function tot(){const sub=S.cart.reduce((a,i)=>a+P.find(p=>p.id==i.id).p*i.q,0),d
 function cart(){if(!S.cart.length)return head()+`<div class="emp">🛒<br>السلة فارغة</div>`;const T=tot();
 return `<div class="back"><b style="font-size:18px">السلة</b></div><div class="box">${S.cart.map(i=>{const p=P.find(x=>x.id==i.id);return `<div class="ci"><div class="pi" style="${sty(p)}">${ico(p)}</div><div>${p.n}<div class="pr">${f(p.p)}</div></div><div class="qty"><button onclick="cq(${p.id},1)">+</button><b>${i.q}</b><button onclick="cq(${p.id},-1)">−</button></div></div>`}).join("")}</div>
 <div class="box"><div class="lbl" style="margin-top:0">كود الخصم</div><div style="display:flex;gap:8px"><input type="text" id="pc" placeholder="كود الخصم"><button class="btn" style="width:90px;margin:0" onclick="promo()">تطبيق</button></div></div>
+<div class="box"><div class="lbl" style="margin-top:0">طريقة الدفع</div><label class="op"><input type="radio" name="pay" ${S.pay=="baridi"?"checked":""} onchange="S.pay='baridi'"> بريدي موب</label><label class="op"><input type="radio" name="pay" ${S.pay=="bank"?"checked":""} onchange="S.pay='bank'"> تحويل بنكي</label></div>
 <div class="box">${INFO}</div>
-<div class="box"><div class="ln"><span>المجموع</span><span>${f(T.sub)}</span></div>${T.d?`<div class="ln" style="color:var(--pri)"><span>الخصم</span><span>- ${f(T.d)}</span></div>`:""}<div class="ln"><span>الشحن (يُدفع عند الاستلام)</span><span>${f(S.ship)}</span></div><div class="ln tt"><span>المدفوع مسبقاً</span><span>${f(T.t)}</span></div><button class="btn" onclick="order()">تأكيد الطلب</button></div>`}
+<div class="box"><div class="ln"><span>المجموع</span><span>${f(T.sub)}</span></div>${T.d?`<div class="ln" style="color:var(--pri)"><span>الخصم</span><span>- ${f(T.d)}</span></div>`:""}<div class="ln tt"><span>المدفوع مسبقاً</span><span>${f(T.t)}</span></div><button class="btn" onclick="order()">تأكيد الطلب</button></div>`}
 function order(){const T=tot();const L=S.cart.map(i=>{const p=P.find(x=>x.id==i.id);return "• "+p.n+" × "+i.q+" = "+f(p.p*i.q)}).join("\n");
-const msg="طلب جديد - منتجات تيمو وعلي اكسبراس في الجزائر\n"+L+(T.d?"\nالخصم: "+f(T.d):"")+"\nالمدفوع مسبقاً: "+f(T.t)+"\nالشحن: "+f(S.ship)+" تُدفع عند الاستلام\nالدفع: عبر بريدي موب\nالاستلام: من مكتب البريد\nمدة التوصيل: من 15 يوماً إلى شهر تقريباً\n\nالاسم:\nالولاية:\nأقرب مكتب بريد:\nرقم الهاتف:";
+const msg="طلب جديد - منتجات تيمو وعلي اكسبراس في الجزائر\n"+L+(T.d?"\nالخصم: "+f(T.d):"")+"\nالمدفوع مسبقاً: "+f(T.t)+"\nالشحن: مجاني\nالدفع: "+(S.pay=="bank"?"تحويل بنكي":"عبر بريدي موب")+"\nالاستلام: من مكتب البريد\nمدة التوصيل: من 15 يوماً إلى شهر تقريباً\n\nالاسم:\nالولاية:\nأقرب مكتب بريد:\nرقم الهاتف:";
 S.orders.unshift({id:"A-"+(1001+S.orders.length),st:0,t:S.cart.map(i=>P.find(p=>p.id==i.id).n).join("، "),tot:T.t});S.cart=[];S.promo=0;
 try{navigator.clipboard.writeText(msg)}catch(e){}
 toast("تم نسخ الطلب، الصقه في محادثة تلغرام 📋");go("acc");setTimeout(()=>{try{window.open("https://t.me/elias_akram","_blank")}catch(e){}},1200)}
